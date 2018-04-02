@@ -170,10 +170,25 @@ class ValFactory implements iValFactory {
 	 * @return current object for further chaining 
 	 */
 	public function matchPattern($customPattern){
-		$input = trim($this->input); 
+		$input = $this->input; 
 		
 		if (preg_match($customPattern, $input)){
 			$this->errors[$this->fieldName] = $this->fieldName . ' does not match pattern.';
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Checks if Input is same as a specified value.
+	 * @param mixed $matchingValue
+	 * @return current object for further chaining 
+	 */
+	public function sameAs($matchingValue){
+		$input = $this->input; 
+		
+		if ($input != $matchingValue){
+			$this->errors[$this->fieldName] = $this->fieldName . ' not match.';
 		}
 
 		return $this;

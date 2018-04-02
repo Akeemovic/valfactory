@@ -12,6 +12,7 @@ interface iValFactory {
 	public function noWhiteSpace();
 	public function unique($haystack);
 	public function matchPattern($customPattern);
+	public function sameAs($matchingValue);
 	// public function limit($min, $max);
 	// public function limitMin($min);
 	// public function limitMax($max);
