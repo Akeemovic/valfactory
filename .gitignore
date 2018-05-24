@@ -1,3 +1,4 @@
-/vendor/
-/tests/
 index\.php
+vendor
+tests
+\.phpintel

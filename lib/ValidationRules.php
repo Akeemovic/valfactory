@@ -151,6 +151,50 @@ class ValidationRules implements ValidationRulesInterface {
 		return $this;
 	}
 
+	/**
+	 * Verify both Minimum and Maximum Limits
+	 * @return self
+	 */
+	public function limit($minCount, $maxCount, $customErrorMessage = null)
+	{
+		$input = trim($this->input); 
+		
+		if (strlen($input) < $minCount || strlen($input) > $maxCount) {
+			$this->setErrorMessage('cannot be less than ' . $minCount . ' or more than ' . $maxCount . ' characters', $customErrorMessage);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Verify Minimum Limits
+	 * @return self
+	 */
+	public function limitMin($minCount, $customErrorMessage = null)
+	{
+		$input = trim($this->input); 
+		
+		if (strlen($input) < $minCount ) {
+			$this->setErrorMessage('cannot be less than ' . $minCount . ' characters', $customErrorMessage);
+		}
+
+		return $this;
+	}
+
+	/**
+	 * Verify Maximum Limits
+	 * @return self
+	 */
+	public function limitMax($maxCount, $customErrorMessage = null)
+	{
+		$input = trim($this->input); 
+		
+		if (strlen($input) > $maxCount) {
+			$this->setErrorMessage('cannot be or more than ' . $maxCount . ' characters', $customErrorMessage);
+		}
+
+		return $this;
+	}
 	
 }
 

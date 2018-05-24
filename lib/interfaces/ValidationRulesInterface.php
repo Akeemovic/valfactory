@@ -11,9 +11,9 @@ interface ValidationRulesInterface {
 	public function unique($haystack);
 	public function matchPattern($customPattern);
 	public function sameAs($matchingValue);
-	// public function limit($min, $max);
-	// public function limitMin($min);
-	// public function limitMax($max);
+	public function limit($minCount, $maxCount);
+	public function limitMin($minCount);
+	public function limitMax($maxCount);
 }
 
 

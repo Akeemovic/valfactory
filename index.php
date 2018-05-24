@@ -31,9 +31,9 @@ if ((isset($_POST['submit'])) && ($_POST['submit'] === 'submitted')){
 
 	$existingEmails = ['akeemovic@slackwave.net', 'halayindex@slackwave.net'];
 
-	$val->validate('alphanum', $alphanum)->notEmpty()->alphaNum()->noWhiteSpace();
-	$val->validate('text', $text)->notEmpty()->alpha()->noWhiteSpace();
-	$val->validate('number', $num)->notEmpty()->numeric();
+	$val->validate('alphanum', $alphanum)->notEmpty()->alphaNum()->noWhiteSpace()->limitMin(10);
+	$val->validate('text', $text)->notEmpty()->alpha()->noWhiteSpace()->limitMax(10);
+	$val->validate('number', $num)->notEmpty()->numeric()->limit(5, 10);
 	$val->validate('email', $email)->email()->unique($existingEmails, "We won't take that Email");
 	$val->validate('password', $password)->notEmpty()->noWhiteSpace();
 	$val->validate('password confirmation', $passwordConfirm)->sameAs($password);
