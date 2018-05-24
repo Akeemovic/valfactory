@@ -1,0 +1,19 @@
+{
+    "name": "stackflix/valfactory",
+    "description": "Simple validation library",
+    "type": "library",
+    "authors": [
+        {
+            "name": "AbdulAkeem \"Akeemovic\" Gbadamosi",
+            "email": "akeemovic26@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Stackflix\\ValFactory\\": "lib"
+        }
+    }
+}

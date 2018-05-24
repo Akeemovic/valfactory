@@ -1,8 +1,10 @@
 <?php 
+require __DIR__ . '../vendor/autoload.php';
+// require_once(dirname(__FILE__) . '/lib/Validator.php');
 
-require __DIR__ . '/autoloader.php';
+// use Stackflix\ValFactory\Validator;
 
-$val = new ValFactory();
+$val = new \Stackflix\ValFactory\Validator();
 
 $alphanum = $_POST['alphanum'];
 $text = $_POST['text'];

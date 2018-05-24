@@ -1,6 +1,7 @@
 <?php 
+namespace Stackflix\ValFactory;
 
-interface iValFactory {
+interface iValidator {
 	public function validate($field, $input);
 	public function passed();
 	public function failed();
