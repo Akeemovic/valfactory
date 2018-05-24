@@ -1,10 +1,7 @@
 <?php 
-namespace Stackflix\ValFactory;
+namespace Stackflix\ValFactory\Interfaces;
 
-interface iValidator {
-	public function validate($field, $input);
-	public function passed();
-	public function failed();
+interface ValidationRulesInterface {
 	public function notEmpty();
 	public function email();
 	public function numeric();

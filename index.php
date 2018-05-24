@@ -6,45 +6,53 @@ require __DIR__ . '../vendor/autoload.php';
 
 $val = new \Stackflix\ValFactory\Validator();
 
-$alphanum = $_POST['alphanum'];
-$text = $_POST['text'];
-$num = $_POST['number'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-$passwordConfirm = $_POST['password-confirm'];
+$alphanum = '';
+$text = '';
+$num = '';
+$email = '';
+$password = '';
+$passwordConfirm = '';
 
+if ((isset($_POST['submit'])) && ($_POST['submit'] === 'submitted')){
+	
+	$alphanum = $_POST['alphanum'];
+	$text = $_POST['text'];
+	$num = $_POST['number'];
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$passwordConfirm = $_POST['passwordConfirm'];
 
-// var_dump($_POST);
-// die();
+	// echo '<p>Alpha Numeric: ' . $alphanum . '</p>';
+	// echo '<p>Alphabet: ' . $text . '</p>';
+	// echo '<p>Numeric: ' . $num . '</p>';
+	// echo '<p>Email: ' . $email . '</p>';
+	// echo '<p>Password: ' . $password . '</p>';
+	// echo '<p>Confirm Password: ' . $passwordConfirm . '</p>';
 
-echo '<p>Alpha Numeric: ' . $alphanum . '</p>';
-echo '<p>Alphabet: ' . $text . '</p>';
-echo '<p>Numeric: ' . $num . '</p>';
-echo '<p>Email: ' . $email . '</p>';
-echo '<p>Password: ' . $password . '</p>';
-echo '<p>Confirm Password: ' . $passwordConfirm . '</p>';
+	$existingEmails = ['akeemovic@slackwave.net', 'halayindex@slackwave.net'];
 
-$existingEmails = ['akeemovic@slackwave.net', 'halayindex@slackwave.net'];
+	$val->validate('alphanum', $alphanum)->notEmpty()->alphaNum()->noWhiteSpace();
+	$val->validate('text', $text)->notEmpty()->alpha()->noWhiteSpace();
+	$val->validate('number', $num)->notEmpty()->numeric();
+	$val->validate('email', $email)->email()->unique($existingEmails, "We won't take that Email");
+	$val->validate('password', $password)->notEmpty()->noWhiteSpace();
+	$val->validate('password confirmation', $passwordConfirm)->sameAs($password);
+}
 
-$val->validate('AlphaNumericField', $alphanum)->notEmpty()->alphaNum()->noWhiteSpace();
-$val->validate('TextField', $text)->notEmpty()->alpha()->noWhiteSpace();
-$val->validate('NumericField', $num)->notEmpty()->numeric();
-$val->validate('EmailField', $email)->email()->unique($existingEmails);
-$val->validate('Password', $password)->notEmpty()->noWhiteSpace();
-$val->validate('Password Confirmation', $passwordConfirm)->sameAs($password);
+// echo "<pre>";
+// 	var_dump($val->errors);
+// echo "</pre>";
 
-echo "<pre>";
-	var_dump($val->errors);
-echo "</pre>";
-
-if($val->failed()){
+// Check for Validation status
+if ($val->failed()) {
 	foreach($val->errors as $error){
 		echo $error . '<br>';
 	}
 } else { 
-	echo "Hurray! There are no errors.";
+	echo "<h3>Hurray! There are no errors.</h3>";
 }
 
+echo "Passed: " . $val->passed() . ":: Failed: " . $val->failed();
 echo "<hr>";
 
 ?>
@@ -56,18 +64,53 @@ echo "<hr>";
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Document</title>
+	<style type="text/css" media="screen">
+		.form-group {
+			border: 1px solid #888;
+			margin:  0;
+			padding: 4px 5px;
+			margin-bottom: 10px;
+		}
+		.form-group input {
+			padding: 5px;
+			border: 1px solid #000;
+			border-radius: 6px;
+		}
+		.form-group p {
+			margin: 0 0 5px 0;
+		}
+	</style>
 </head>
 <body>
 	<form action="<?php $_SERVER['SCRIPT_NAME']?>" method="post">
-		<p><input type="text" name="alphanum" id="" placeholder="Alphanumeric"></p>
-		<p><input type="text" name="text" id="" placeholder="Text"></p>
-		<p><input type="text" name="number" id="" placeholder="Number"></p>
-		<p><input type="password" name="password" id="" placeholder="Password"></p>
-		<p><input type="password" name="password-confirm" id="" placeholder="Confirm Password"></p>
-		<p><input type="text" name="email" id="" placeholder="Email"></p>
+		<div class="form-group">
+			<p><?php if (isset($val->errors['alphanum'])) { echo  $val->errors['alphanum']; } else { echo "Clean"; } ?></p>
+			<p><input type="text" name="alphanum" id="" placeholder="Alphanumeric" value="<?php echo $alphanum ?>"></p>
+		</div>
+		<div class="form-group">
+			<p><?php if (isset($val->errors['text'])) { echo  $val->errors['text']; } else { echo "Clean"; } ?></p>
+			<p><input type="text" name="text" id="" placeholder="Text" value="<?php echo $text ?>"></p>
+		</div>	
+		<div class="form-group">
+			<p><?php if (isset($val->errors['number'])) { echo  $val->errors['number']; } else { echo "Clean"; } ?></p>
+			<p><input type="text" name="number" id="" placeholder="Number" value="<?php echo $num ?>"></p>
+		</div>
+		<div class="form-group">
+			<p><?php if (isset($val->errors['password'])) { echo  $val->errors['password']; } else { echo "Clean"; } ?></p>
+			<p><input type="password" name="password" id="" placeholder="Password" value="<?php echo $password ?>"></p>
+		</div>
+		<div class="form-group">
+			<p><?php if (isset($val->errors['password confirmation'])) { echo $val->errors['password confirmation']; } else { echo "Clean"; } ?></p>
+			<p><input type="password" name="passwordConfirm" id="" placeholder="Confirm Password" value="<?php echo $passwordConfirm; ?>"></p>
+		</div>
+		<div class="form-group">
+			<p><?php if (isset($val->errors['email'])) { echo $val->errors['email']; } else { echo "Clean"; }?></p>
+			<p><input type="text" name="email" id="" placeholder="Email" value="<?php echo $email ?>"></p>
+		</div>
+		
 		
 		<p><input type="checkbox" name="checkbox" id=""></p>
-		<button type="submit">Submit</button>
+		<button type="submit" name="submit" value="submitted">Submit</button>
 	</form>
 </body>
 </html>
