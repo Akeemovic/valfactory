@@ -2,9 +2,9 @@
 require __DIR__ . '../vendor/autoload.php';
 // require_once(dirname(__FILE__) . '/lib/Validator.php');
 
-// use Stackflix\ValFactory\Validator;
+// use Hublint\ValFactory\Validator;
 
-$val = new \Stackflix\ValFactory\Validator();
+$val = new \Hublint\ValFactory\Validator();
 
 $alphanum = '';
 $text = '';

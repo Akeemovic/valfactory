@@ -1,5 +1,5 @@
 <?php 
-namespace Stackflix\ValFactory\Interfaces;
+namespace Hublint\ValFactory\Interfaces;
 
 interface ValidatorInterface {
 	public function validate($field, $input);

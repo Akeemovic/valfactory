@@ -1,7 +1,7 @@
 <?php 
-namespace Stackflix\ValFactory;
+namespace Hublint\ValFactory;
 
-use Stackflix\ValFactory\Interfaces\ValidationRulesInterface;
+use Hublint\ValFactory\Interfaces\ValidationRulesInterface;
 
 /**
 * Validation Rules

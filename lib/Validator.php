@@ -1,8 +1,8 @@
 <?php
-namespace Stackflix\ValFactory;
+namespace Hublint\ValFactory;
 
-use Stackflix\ValFactory\Interfaces\ValidatorInterface;
-use Stackflix\ValFactory\ValidationRules;
+use Hublint\ValFactory\Interfaces\ValidatorInterface;
+use Hublint\ValFactory\ValidationRules;
 
 /**
 * Validator Class
