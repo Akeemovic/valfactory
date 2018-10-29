@@ -1,9 +1,11 @@
 {
     "name": "hublint/valfactory",
     "description": "Simple validation library",
-    "keywords": ["validaton", "validator", "form validatoin"],
+    "keywords": ["validation", "validator", "form validation"],
     "type": "library",
-    "authors": [
+    "homepage": "http://github.com/hublint/valfactory",
+    "license": "MIT",
+    "authors" : [
         {
             "name": "AbdulAkeem \"Akeemovic\" Gbadamosi",
             "email": "akeemovic26@gmail.com"
