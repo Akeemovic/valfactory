@@ -1,6 +1,7 @@
 {
     "name": "hublint/valfactory",
     "description": "Simple validation library",
+    "keywords": ["validaton", "validator", "form validatoin"],
     "type": "library",
     "authors": [
         {
