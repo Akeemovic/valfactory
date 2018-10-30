@@ -48,7 +48,7 @@ $existingEmails = ['akeemovic@slackwave.net', 'halayindex@slackwave.net'];
 	Format
 	$val->validate('key1', $data1)->valMethod1();
 	$val->validate('key2', $data2)->valMethod2()->valMethod3();
-/*
+*/
 
 // Run Validations
 $val->validate('alphanum', $alphanum)->notEmpty()->alphaNum()->noWhiteSpace()->limitMin(10);
