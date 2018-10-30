@@ -1,4 +1,4 @@
-Hublint/ValFactory
+hublint/valfactory
 ===========
 
 Simple PHP vaidation library.
@@ -25,7 +25,7 @@ Happy Validating!
 <?php
 /**
  * @var Composer\Autoload\ClassLoader $autoload
- */
+*/
 $autoload = require 'vendor/autoload.php';
 
 
@@ -45,9 +45,9 @@ $passwordConfirm = 'secret';
 $existingEmails = ['akeemovic@slackwave.net', 'halayindex@slackwave.net'];
 
 /**
-	Format
-	$val->validate('key1', $data1)->valMethod1();
-	$val->validate('key2', $data2)->valMethod2()->valMethod3();
+ * Format
+ * $val->validate('key1', $data1)->valMethod1();
+ * $val->validate('key2', $data2)->valMethod2()->valMethod3();
 */
 
 // Run Validations
@@ -60,7 +60,7 @@ $val->validate('password_confirmation', $passwordConfirm)->sameAs($password);
 
 // Check for errors
 if ($val->passed()) {
-	echo "Hurray!"
+	echo "Hurray!";
 } else {
 	foreach($val->errors as $error){
 		echo $error . '<br>';
@@ -73,28 +73,29 @@ if ($val->failed()) {
 		echo $error . '<br>';
 	}
 } else {
-	echo "Hurray!"
+	echo "Hurray!";
 }
 
 /*
-	If validation(s) passed successsfully, $val->failed() returns FALSE, $val->errors returns [] - an empty array.
-	If validation(s) passed successsfully, $val->passed() rerurns TRUE, $val->errors returns [] - an empty array.
-
-	But,
-
-	If the validations failed, $val->failed() returns TRUE, $val->errors returns an array of errors.
-	If the validations failed, $val->passed() rerurns FALSE, $val->errors returns an array of errors.
+ * If validation(s) passed successsfully, $val->failed() returns FALSE, $val->errors returns [] - an empty array.
+ * If validation(s) passed successsfully, $val->passed() rerurns TRUE, $val->errors returns [] - an empty array.
+ *
+ * But,
+ *
+ * If the validations failed, $val->failed() returns TRUE, $val->errors returns an array of errors.
+ * If the validations failed, $val->passed() rerurns FALSE, $val->errors returns an array of errors.
 */
 ```
 
 ## Available Methods
 ```php
-
+<?php
 /**
-	Available Methods
-	$customErrorMessage is for setting custom errros, and is optional. 
-	So, only set it when you don't want the default errors. 
-**/
+ * Available Methods
+ * $customErrorMessage is for setting custom errros, and is optional. 
+ * So, only set it when you don't want the default errors. 
+*/
+
 // Validation not empty
 notEmpty($customErrorMessage);
 
@@ -133,10 +134,10 @@ limitMax($maxCount, $customErrorMessage);
 
 
 /** 
-	NOTE: Validation methods must be chained to one validate('key', $data) root method.
-	Example;
-	$val->validate('key', $data)->limit(5, 15);
-	$val->validate('key', $data)->alpha('Characters must be only alphabets Aa-Zz')->noWhiteSpace(5, 15);
+ * NOTE: Validation methods must be chained to one validate('key', $data) root method.
+ * Example;
+ * $val->validate('key', $data)->limit(5, 15);
+ * $val->validate('key', $data)->alpha('Characters must be only alphabets Aa-Zz')->noWhiteSpace(5, 15);
 */
 
 ```
