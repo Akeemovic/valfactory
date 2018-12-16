@@ -126,7 +126,7 @@ class ValidationRules implements ValidationRulesInterface {
 	{
 		$input = $this->input; 
 		
-		if (preg_match($customPattern, $input)) {
+		if (! preg_match($customPattern, $input)) {
 			$this->setErrorMessage('does not match pattern.', $customErrorMessage);
 		}
 
