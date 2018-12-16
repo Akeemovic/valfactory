@@ -41,7 +41,7 @@ class ValidationRules implements ValidationRulesInterface {
 	
 	/**
 	 * Verify if Input is Number.
-	 * @return current object for further chaining
+	 * @return self object for further chaining
 	 */
 	public function numeric($customErrorMessage = null)
 	{
@@ -119,7 +119,7 @@ class ValidationRules implements ValidationRulesInterface {
 
 	/**
 	 * Verify if Input matches a spacified pattern.
-	 * @param Array $customPattern
+	 * @param string $customPattern
 	 * @return self
 	 */
 	public function matchPattern($customPattern, $customErrorMessage = null)
